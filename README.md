@@ -1,6 +1,6 @@
 # QuickFetch
 
-Test a fetch in javascript
+Test a fetch get in javascript
 
 instances:
 
