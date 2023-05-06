@@ -1,0 +1,108 @@
+<meta charset="UTF-8">
+<meta name="description" content="Test a fetch easily">
+<meta name="keywords" content="Fetch, JavaScript, QuickFetch">
+<meta name="author" content="luckycdev">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuickFetch</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
+<script src="https://kit.fontawesome.com/bdb0f81e24.js" crossorigin="anonymous"></script>
+<body style="padding-bottom: 50px;background: linear-gradient(90deg, hsl(251, 55%, 38%) 0%, #85a8ff 100%); font-family: 'Open Sans'; font-size: 22px;">
+<h1 style="color:white; text-align: center;">QuickFetch</h1>
+<h3 style="color:white; text-align: center;"><u>Quickly test a fetch</u></h3>
+<h3 style="color:lightsteelblue; text-align: center;">Put the url in the textarea, example: "https://returnyoutubedislikeapi.com/votes?videoId=x_zlY-UnvGQ"</h3>
+<h3 style="color:lightsteelblue; text-align: center;">For specifics use what you want to see, example: "dislikes"</h3>
+<div align="center"><textarea id='fetchtext' name='fetchtext' style="width:500px;height:200px;color:white;background-color:#2e3233;margin:auto" placeholder="fetch url"></textarea></div>
+<div align="center"><textarea id='specific' name='specific' style="width:500px;height:200px;color:white;background-color:#2e3233;margin:auto" placeholder="specific (ex: dislikes) - will show only that from the response"></textarea></div>
+<div align="center"><button class="button" onclick="quickfetchjs()">Fetch</button></div>
+<script>
+function quickfetchjs() {
+    var fetchtext=document.getElementById("fetchtext").value;
+    var specific=document.getElementById("specific").value;
+    if(specific!==''){
+        fetch(fetchtext)
+        .then(response=>response.json())
+        .then(data=>{
+            var responsep=document.createElement("p");
+        responsep.innerText=specific+" : "+JSON.stringify(data[specific]);
+        responsep.style.color='white';
+        var namep=document.createElement('p');
+        namep.innerText="Fetched "+fetchtext+" with specific : "+specific;
+        namep.style.fontWeight='bold';
+        namep.style.textDecoration='underline';
+        namep.style.color='white';
+        document.body.appendChild(namep);
+        document.body.appendChild(responsep);
+    })
+    }
+    else{
+        fetch(fetchtext)
+        .then(response=>response.json())
+        .then(data=>{
+            var responsep=document.createElement("p");
+        responsep.innerText=JSON.stringify(data);
+        responsep.style.color='white';
+        var namep=document.createElement('p');
+        namep.innerText="Fetched "+fetchtext;
+        namep.style.fontWeight='bold';
+        namep.style.textDecoration='underline';
+        namep.style.color='white';
+        document.body.appendChild(namep);
+        document.body.appendChild(responsep);
+        })
+    }}
+</script>  
+</body>
+<style>
+div.discord{
+position:fixed;
+right:10px;
+bottom:10px;
+}
+div.github{
+position:fixed;
+right:50px;
+bottom:10px;
+}
+div.watermark{
+  position:fixed;
+  left:10px;
+  bottom:10px;
+}
+  .button {
+    position: relative;
+    background-color: #4c29c9;
+    border: none;
+    border-radius: 15px;
+    font-size: 28px;
+    color: #FFFFFF;
+    padding: 20px;
+    width: 200px;
+    text-align: center;
+    transition-duration: 0.4s;
+    text-decoration: none;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .button:after {
+    content: "";
+    background: #5230cf;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  .button:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+  </style>
+<div align="center" class="discord"><a href="https://discord.gg/nAEtSVbcKx" target="_blank"><i class="fa-brands fa-discord" style="color:#5865F2;"></i></a>
+<div align="center" class="github"><a href="https://github.com/luckycdev/QuickFetch" target="_blank"><i class="fa-brands fa-github" style="color:black;"></i></a>
+<div align="center" class="watermark"><a href="https://github.com/luckycdev" target="_blank"><h3 style="font-size:15px;color:white;">Made by lucky#9919</h3></a>
