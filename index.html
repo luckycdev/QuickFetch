@@ -39,9 +39,11 @@ function quickfetchjs() {
                 namep.style.color='white';
                 document.body.appendChild(namep);
                 document.body.appendChild(responsep);
+                window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
             }
             else{
                 throw new Error('The specified property does not exist in the fetched data.');
+                window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
             }
         })
         .catch(error=>{
@@ -49,6 +51,7 @@ function quickfetchjs() {
             errorp.innerText='Error: '+error.message;
             errorp.style.color='red';
             document.body.appendChild(errorp);
+            window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         });
     }
     else{
@@ -65,12 +68,14 @@ function quickfetchjs() {
             namep.style.color='white';
             document.body.appendChild(namep);
             document.body.appendChild(responsep);
+            window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         })
         .catch(error=>{
             var errorp=document.createElement('p');
             errorp.innerText='Error: '+error.message;
             errorp.style.color='red';
             document.body.appendChild(errorp);
+            window.scrollTo({ left: 0, top: document.body.scrollHeight, behavior: "smooth" });
         });
     }
 }
