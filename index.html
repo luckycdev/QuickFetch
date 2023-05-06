@@ -28,34 +28,52 @@ function quickfetchjs() {
         fetch(fetchtext)
         .then(response=>response.json())
         .then(data=>{
-            var responsep=document.createElement("p");
-        responsep.innerText=specific+" : "+JSON.stringify(data[specific]);
-        responsep.style.color='white';
-        var namep=document.createElement('p');
-        namep.innerText="Fetched "+fetchtext+" with specific : "+specific;
-        namep.style.fontWeight='bold';
-        namep.style.textDecoration='underline';
-        namep.style.color='white';
-        document.body.appendChild(namep);
-        document.body.appendChild(responsep);
-    })
+            if(data.hasOwnProperty(specific)){
+                var responsep=document.createElement("p");
+                responsep.innerText=specific+" : "+JSON.stringify(data[specific]);
+                responsep.style.color='white';
+                var namep=document.createElement('p');
+                namep.innerText="Fetched "+fetchtext+" with specific : "+specific;
+                namep.style.fontWeight='bold';
+                namep.style.textDecoration='underline';
+                namep.style.color='white';
+                document.body.appendChild(namep);
+                document.body.appendChild(responsep);
+            }
+            else{
+                throw new Error('The specified property does not exist in the fetched data.');
+            }
+        })
+        .catch(error=>{
+            var errorp=document.createElement('p');
+            errorp.innerText='Error: '+error.message;
+            errorp.style.color='red';
+            document.body.appendChild(errorp);
+        });
     }
     else{
         fetch(fetchtext)
         .then(response=>response.json())
         .then(data=>{
             var responsep=document.createElement("p");
-        responsep.innerText=JSON.stringify(data);
-        responsep.style.color='white';
-        var namep=document.createElement('p');
-        namep.innerText="Fetched "+fetchtext;
-        namep.style.fontWeight='bold';
-        namep.style.textDecoration='underline';
-        namep.style.color='white';
-        document.body.appendChild(namep);
-        document.body.appendChild(responsep);
+            responsep.innerText=JSON.stringify(data);
+            responsep.style.color='white';
+            var namep=document.createElement('p');
+            namep.innerText="Fetched "+fetchtext;
+            namep.style.fontWeight='bold';
+            namep.style.textDecoration='underline';
+            namep.style.color='white';
+            document.body.appendChild(namep);
+            document.body.appendChild(responsep);
         })
-    }}
+        .catch(error=>{
+            var errorp=document.createElement('p');
+            errorp.innerText='Error: '+error.message;
+            errorp.style.color='red';
+            document.body.appendChild(errorp);
+        });
+    }
+}
 </script>  
 </body>
 <style>
